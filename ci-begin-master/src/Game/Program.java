@@ -16,8 +16,10 @@ public class Program {
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         GamePanel panel = new GamePanel();
+        panel.setLayout(null);
         panel.setPreferredSize(new Dimension(Setting.GAME_WIDTH, Setting.GAME_HEIGHT));
-        panel.setBackground(Color.CYAN);
+        panel.setBackground(Color.BLUE);
+
         window.add(panel);
         window.pack();
 

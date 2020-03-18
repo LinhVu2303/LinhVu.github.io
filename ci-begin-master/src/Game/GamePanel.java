@@ -14,8 +14,8 @@ public class GamePanel extends JPanel {
     ArrayList<Enemy> enemies;
 
     public GamePanel() {
-        player = new Player();
         background = new Background();
+        player = new Player();
         enemies = new ArrayList<>();
     }
 
@@ -38,28 +38,20 @@ public class GamePanel extends JPanel {
 
     @Override
     public void paint(Graphics g) {
-        background.render(g);
-        player.render(g);
-        for (int i = 0; i < enemies.size() ; i++) {
-            Enemy enemy = enemies.get(i);
-            enemy.render(g);
+        for (int i = 0; i < GameObject.objects.size(); i++) {
+            GameObject object = GameObject.objects.get(i);
+            object.render(g);
         }
-
     }
 
     private void runAll() {
-        player.run();
-        background.run();
-        enemyRun();
+        for (int i = 0; i < GameObject.objects.size() ; i++) {
+            GameObject object = GameObject.objects.get(i);
+            object.run();
+        }
         summon();
     }
 
-    private void enemyRun() {
-        for (int i = 0; i < enemies.size() ; i++) {
-            Enemy enemy = enemies.get(i);
-            enemy.run();
-        }
-    }
 
     int summonCount;
     int wayCount;

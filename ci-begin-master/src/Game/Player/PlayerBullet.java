@@ -3,6 +3,7 @@ package Game.Player;
 import Game.Enemy.Enemy;
 import Game.GameObject;
 import Game.Vector2D;
+import Game.renderer.Renderer;
 import tklibs.SpriteUtils;
 
 import java.awt.*;
@@ -13,9 +14,7 @@ public class PlayerBullet  extends GameObject {
     int count;
 
     public PlayerBullet() {
-        image = SpriteUtils.loadImage("assets/images/sphere-bullets/2.png");
-//        position = new Vector2D();
-//        velocity = new Vector2D(0, -5);
+        renderer = new Renderer("assets/images/sphere-bullets");
         velocity.set(0,-5);
         count = 0;
     }
