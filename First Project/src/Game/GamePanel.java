@@ -66,7 +66,7 @@ public class GamePanel extends JPanel {
         wayCount++;
         if (wayCount > 120) {
             summonCount++;
-            if (summonCount > 20) {
+            if (summonCount > 15) {
 //                Enemy enemy = new Enemy();
                 Enemy enemy = GameObject.recycle(Enemy.class);
                 enemy.position.set(xEnemy, -100);
@@ -74,7 +74,7 @@ public class GamePanel extends JPanel {
                 enemies.add(enemy);
                 summonCount = 0;
                 enemyCount++;
-                if (enemyCount > 10){
+                if (enemyCount > 5){
                     wayCount = 0;
                     enemyCount = 0;
                     xEnemy = random.nextInt(100 + random.nextInt(200));

@@ -1,8 +1,10 @@
 package Game.Player;
 
+import Game.Enemy.Enemy;
 import Game.GameObject;
 import Game.GameWindow;
 import Game.Setting;
+import Game.physic.BoxCollider;
 import Game.renderer.Renderer;
 import tklibs.SpriteUtils;
 
@@ -16,6 +18,7 @@ public class Player extends GameObject {
     public Player() {
         renderer = new Renderer("assets/images/players/straight");
         position.set(300,500);
+        hitBox =new BoxCollider(this, 30,45);
         hp = 100;
     }
 
@@ -34,6 +37,22 @@ public class Player extends GameObject {
         move();
         limit();
         fire();
+
+    }
+
+    @Override
+    public void deactive() {
+        super.deactive();
+        PlayerExplosion explosion = GameObject.recycle(PlayerExplosion.class);
+        explosion.position.set(position);
+    }
+
+    public void takeDamage(int damage) {
+        hp -= 5* damage;
+        if(hp <= 0){
+            hp = 0;
+            this.deactive();
+        }
     }
 
     private void limit() {

@@ -17,12 +17,12 @@ public class Enemy extends GameObject {
     int hp;
 
     public Enemy(){
-        renderer = new Renderer("assets/images/enemies/level0/blue");
+        renderer = new Renderer("assets/images/enemies/level0/black");
         position.set(0, Setting.GAME_HEIGHT - Setting.BACKGROUND_HEIGHT);
         velocity.set(0, 3);
         fireCount = 0;
         hitBox = new BoxCollider(this, 32,32);
-        hp = 500;
+        hp = 10;
     }
 
     static Font font = new Font("Verdana", Font.BOLD, 20);
@@ -67,7 +67,7 @@ public class Enemy extends GameObject {
     }
 
     public void takeDamage(int damage){
-        hp -= 10 * damage;
+        hp -=  damage;
         if (hp <=0){
             hp = 0;
             this.deactive();
@@ -77,6 +77,13 @@ public class Enemy extends GameObject {
     @Override
     public void reset(){
         super.reset(); //active = true
-        hp = 500;
+        hp = 10;
+    }
+
+    @Override
+    public void deactive() {
+        super.deactive(); // active = false
+        EnemyExplosion explosion = GameObject.recycle(EnemyExplosion.class);
+        explosion.position.set(position);
     }
 }
