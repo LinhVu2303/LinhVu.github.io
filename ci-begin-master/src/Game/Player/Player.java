@@ -11,12 +11,22 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class Player extends GameObject {
+    int hp;
 
     public Player() {
         renderer = new Renderer("assets/images/players/straight");
         position.set(300,500);
+        hp = 100;
     }
 
+    static Font font = new Font("Time New Roman",Font.BOLD,20);
+    @Override
+    public void render(Graphics g){
+        super.render(g);
+        g.setFont(font);
+        g.setColor(Color.YELLOW);
+        g.drawString(hp + "",(int) position.x, (int)position.y);
+    }
 
     @Override
     public void run() {
@@ -67,7 +77,8 @@ public class Player extends GameObject {
         fireCount++;
         if (GameWindow.isFirePress && fireCount > 15) {
             for (int i = 0; i < 100; i++) {
-                PlayerBullet bullet = new PlayerBullet();
+//                PlayerBullet bullet = new PlayerBullet();
+                PlayerBullet bullet = GameObject.recycle(PlayerBullet.class);
                 bullet.position.set(position.x, position.y);
                 bullet.velocity.setAngel(-Math.PI - i * (1));
             }

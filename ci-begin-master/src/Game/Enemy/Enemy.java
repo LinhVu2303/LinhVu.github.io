@@ -2,6 +2,7 @@ package Game.Enemy;
 
 import Game.GameObject;
 import Game.Setting;
+import Game.physic.BoxCollider;
 import Game.renderer.Renderer;
 import tklibs.SpriteUtils;
 
@@ -13,24 +14,44 @@ import java.util.Set;
 
 public class Enemy extends GameObject {
     int fireCount;
+    int hp;
 
     public Enemy(){
-        renderer = new Renderer("assets/images/enemies/level0/black");
+        renderer = new Renderer("assets/images/enemies/level0/blue");
         position.set(0, Setting.GAME_HEIGHT - Setting.BACKGROUND_HEIGHT);
         velocity.set(0, 3);
         fireCount = 0;
+        hitBox = new BoxCollider(this, 32,32);
+        hp = 500;
+    }
+
+    static Font font = new Font("Verdana", Font.BOLD, 20);
+    @Override
+    public void render(Graphics g) {
+        super.render(g);
+        g.setFont(font);
+        g.setColor(Color.RED);
+        g.drawString(hp + "",(int) position.x, (int)position.y);
     }
 
     public void run(){
         super.run();
         changeDiretion();
         fire();
+        deactiveIfNeeded();
+    }
+
+    private void deactiveIfNeeded() {
+        if (this.position.y > Setting.GAME_HEIGHT + 50){
+            this.deactive();
+        }
     }
 
     private void fire() {
         fireCount++;
         if (fireCount > 120){
-            EnemyBullet bullet = new EnemyBullet();
+//            EnemyBullet bullet = new EnemyBullet();
+            EnemyBullet bullet = GameObject.recycle(EnemyBullet.class);
             bullet.position.set(this.position); // dat vi tri dan tai vi tri eneny
             fireCount = 0;
         }
@@ -45,4 +66,17 @@ public class Enemy extends GameObject {
         }
     }
 
+    public void takeDamage(int damage){
+        hp -= 10 * damage;
+        if (hp <=0){
+            hp = 0;
+            this.deactive();
+        }
+    }
+
+    @Override
+    public void reset(){
+        super.reset(); //active = true
+        hp = 500;
+    }
 }

@@ -40,14 +40,18 @@ public class GamePanel extends JPanel {
     public void paint(Graphics g) {
         for (int i = 0; i < GameObject.objects.size(); i++) {
             GameObject object = GameObject.objects.get(i);
-            object.render(g);
+            if(object.active){
+                object.render(g);
+            }
         }
     }
 
     private void runAll() {
         for (int i = 0; i < GameObject.objects.size() ; i++) {
             GameObject object = GameObject.objects.get(i);
-            object.run();
+            if (object.active) {
+                object.run();
+            }
         }
         summon();
     }
@@ -63,7 +67,8 @@ public class GamePanel extends JPanel {
         if (wayCount > 120) {
             summonCount++;
             if (summonCount > 20) {
-                Enemy enemy = new Enemy();
+//                Enemy enemy = new Enemy();
+                Enemy enemy = GameObject.recycle(Enemy.class);
                 enemy.position.set(xEnemy, -100);
                 enemy.velocity.setAngel(Math.PI/9);
                 enemies.add(enemy);

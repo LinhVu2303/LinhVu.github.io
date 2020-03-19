@@ -34,10 +34,14 @@ public class Renderer {
     public void render(Graphics g, GameObject master) {
         //master >  position
         if (image != null) {
-            g.drawImage(image, (int) master.position.x, (int) master.position.y, null);
+            g.drawImage(image, (int) (master.position.x - master.anchor.x * image.getWidth()),
+                    (int) (master.position.y- master.anchor.y * image.getHeight()),
+                    null);
         } else if (images != null){
             BufferedImage currentImage = images.get(currentIndex);
-            g.drawImage(currentImage, (int) master.position.x, (int) master.position.y, null);
+            g.drawImage(currentImage, (int) (master.position.x - master.anchor.x * currentImage.getWidth()),
+                    (int) (master.position.y - master.anchor.y * currentImage.getHeight()) ,
+                    null);
 
             frameCount++;
             if (frameCount  > 10){
