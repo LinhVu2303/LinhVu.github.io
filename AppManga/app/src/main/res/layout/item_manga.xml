@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="170dp"
+        android:layout_height="250dp"
+        android:id="@+id/iv_bia"
+        android:src="@drawable/aa"/>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dragon ball"
+        android:paddingLeft="10dp"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_below="@id/iv_bia"
+        android:paddingTop="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:text="Description: "
+        android:layout_toRightOf="@id/iv_bia"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:id="@+id/tv_description"/>
+
+    <Button
+        android:id="@+id/btn_read"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_description"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@id/iv_bia"
+        android:text="Read" />
+
+    <Button
+        android:id="@+id/btn_follow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_description"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@id/btn_read"
+        android:text="FOLLOW" />
+
+</RelativeLayout>
