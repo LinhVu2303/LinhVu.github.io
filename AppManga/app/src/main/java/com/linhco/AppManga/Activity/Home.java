@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -31,6 +33,7 @@ public class Home extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("DANH SÁCH TRUYỆN"); // đổi tên thanh bar
 
+
         initView();
     }
 
@@ -49,5 +52,18 @@ public class Home extends AppCompatActivity {
         manga.setLayoutManager(new LinearLayoutManager(this));
         adapter = new HomeAdapter(listManga);
         manga.setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.mymenu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent = new Intent(Home.this, Info.class);
+        startActivity(intent);
+        return super.onOptionsItemSelected(item);
     }
 }
