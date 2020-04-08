@@ -1,9 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.Info">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_nameInfo"
+        android:text="Tên tài khoản"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:inputType="text"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_nameInfo"
+        android:id="@+id/edt_nameInfo"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edt_nameInfo"
+        android:text="Số điện thoại"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:id="@+id/tv_phoneInfo"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_phoneInfo"
+        android:id="@+id/edt_phoneInfo"
+        android:inputType="text"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:layout_below="@id/edt_phoneInfo"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:id="@+id/tv_email"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_email"
+        android:id="@+id/edt_emailInfo"
+        android:inputType="text"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="save"
+        android:id="@+id/btn_saveInfo"
+        android:layout_below="@id/edt_emailInfo"
+        android:layout_marginTop="25dp"/>
+
+    <Button
+        android:id="@+id/btn_changePass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edt_emailInfo"
+        android:layout_marginTop="26dp"
+        android:text="Chane Password"
+        android:layout_toRightOf = "@id/btn_saveInfo"/>
+
+</RelativeLayout>
